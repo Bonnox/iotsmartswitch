@@ -1,7 +1,6 @@
 void TaskRelay_setup(HALdata *machine);
 void switchLed();
 void handleRelayTransition(RelaisTaskData dataStruct,HALdata *machine);
-void handleResetCallback(RelaisTaskData *relaytask);
 void debug_relay_tasti(bool buttonLocalBypassPressed,bool buttonLocalStateOnPressed,int mode);
 void relayLogicSide(RelaisTaskData *structure,String messageManu,String messageAuto,HALdata *machine);
 void handleSwitchMode(RelaisTaskData *relaytask,String message);

@@ -1,6 +1,6 @@
 #include "Pin.h"
 #include "../../generalpurposelib.h"
-
+#include "../HAL/board.h"
 
 	
 
@@ -45,7 +45,7 @@
 				-----------------------------------------------------------
 				if(requested_direction && requested_capability[pin_number])
 				{
-					CapabilityDirection;								(1)
+					CapabilityDirection();								(1)
 				}
 				-----------------------------------------------------------
 				in line (1), replace Capability with analog/digital and Direction with read/write.

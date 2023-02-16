@@ -1,5 +1,5 @@
 void TaskPrometheus_Setup();
-bool isMetric(String str);
+bool isStringAlmostMetric(String str);
 void TaskPrometheus_callBack(int size,String metricsToPush);
 void TaskPrometheus_Loop(int size,String metricsToPush);
 #define INTERFACE 0

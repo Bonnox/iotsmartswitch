@@ -41,7 +41,7 @@ String compactMetrics(int size, String metric1, String metric2, String metric3)
 	/*
 	for (int i = 0; i < size; i++)
 	{
-		isMetric()
+		isStringAlmostMetric()
 		//if (metrics[i].length()>0)
 		if (starts)
 		{
@@ -51,23 +51,18 @@ String compactMetrics(int size, String metric1, String metric2, String metric3)
 			ret += "\n";
 		}
 	}*/
-	if (isMetric(metric1))
+	if (isStringAlmostMetric(metric1))
 	{
 		ret += metric1;
 	}
-	//Serial.println("is metric " + (String)isMetric(metric1));
-	if (isMetric(metric2))
+	if (isStringAlmostMetric(metric2))
 	{
 		ret += metric2;
 	}
-	//Serial.println("is metric " + (String)isMetric(metric2));
-	if (isMetric(metric3))
+	if (isStringAlmostMetric(metric3))
 	{
 		ret += metric3;
 	}
-	//Serial.println("is metric " + (String)isMetric(metric3));
-	//Serial.println("-------- ");
-	//Serial.println("---------------------");
 	return ret;
 }
 

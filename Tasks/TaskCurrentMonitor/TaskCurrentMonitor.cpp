@@ -1,6 +1,7 @@
 #include "TaskCurrentMonitor.h"
 #include "../../generalpurposelib.h"
 #include "../../system/HAL/HAL.h"
+#include "../../system/HAL/board.h"
 
 
 void TaskCurrentMonitor_setup(HALdata* machine)
@@ -57,7 +58,8 @@ void TaskCurrentMonitor_callBack(HALdata* machine)
 	
 	// i found that splitting this simple function up too much 
 	// actually hurt readability because your brain needs to jump
-	// among pieces of the same concept and reconstruct them
+	// among pieces of the same concept and reconstruct them, while
+	// presenting it in one go it was more fluid
 
 
 	//handleBufferIndexResetAndCalculateAverage
@@ -70,26 +72,14 @@ void TaskCurrentMonitor_callBack(HALdata* machine)
 
 	//handleMeasureAndStore
 	int read = HAL_read(false, CurrentMonitorRuntime.pin, machine);
-	//Serial.println("read hal " + (String)read);
 	CurrentMonitorRuntime.measures[CurrentMonitorRuntime.bufferIndex] = read;
 	CurrentMonitorRuntime.bufferIndex++;
 }
 
-
-//void TaskCurrentMonitor_loop(String* metric)
-//void TaskCurrentMonitor_loop(HALdata* machine, String metric)
 void TaskCurrentMonitor_loop(HALdata* machine, char **metric)
 {
-	//if (finished(&(CurrentMonitorRuntime.timer)))
-	{
-		TaskCurrentMonitor_callBack(machine);
-	//	startDelay(TASK_CURRENTMONITOR_WAIT, &(CurrentMonitorRuntime.timer));
-	}
-	//String tmp= String(generateMetricStringGauge("current", "measure of current", CurrentMonitorRuntime.voltage));
-	//metric = (String*)malloc(sizeof(tmp));
-	//memcpy(metric, &tmp, sizeof(tmp));
-	generateMetricStringGauge("current", "measure of current", CurrentMonitorRuntime.voltage).toCharArray(*metric, STRING_METRIC_SIZE);
-	//generateMetricStringGauge("current", "measure of current", 72).toCharArray(*metric, 200);
 
-	//updateTimer(&CurrentMonitorRuntime.timer);
+		TaskCurrentMonitor_callBack(machine);
+		generateMetricStringGauge("current", "measure of current", CurrentMonitorRuntime.voltage).toCharArray(*metric, STRING_METRIC_SIZE);
+
 } 

@@ -5,7 +5,7 @@
 #include "../../multitasklib.h"
 #include "../../generalpurposelib.h"
 
-#define FAILURE_ALERT_THRESHOLD 1.4
+#define FAILURE_ALERT_THRESHOLD 0.03
 #define FAILURE_MULTITASK_TIMER 30*SECOND_MILLIS
 
 #define FAILUREDETECTOR_METRIC_NAME_FAIL "failure"

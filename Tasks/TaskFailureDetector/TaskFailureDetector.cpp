@@ -29,7 +29,10 @@ void TaskFailureDetector_loop(char** metric)
 		{
 			FailureDetectorRuntime.copyMeasure = CurrentMonitorRuntime.voltage;
 
-			if (FailureDetectorRuntime.copyMeasure < ALERT_THRESHOLD)
+			//Serial.print("verity " + (String)FailureDetectorRuntime.copyMeasure);
+			//	Serial.println(" " + (String)(FailureDetectorRuntime.copyMeasure < FAILURE_ALERT_THRESHOLD));
+
+			if (FailureDetectorRuntime.copyMeasure < FAILURE_ALERT_THRESHOLD)
 			{
 				FailureDetectorRuntime.failure = true;
 			}
@@ -42,5 +45,5 @@ void TaskFailureDetector_loop(char** metric)
 		startDelay(FAILURE_MULTITASK_TIMER, &(FailureDetectorRuntime.timer));
 	}
 
-	updateTimer(&FailureDetectorRuntime.timer);
+	updateTimer(&(FailureDetectorRuntime.timer));
 }

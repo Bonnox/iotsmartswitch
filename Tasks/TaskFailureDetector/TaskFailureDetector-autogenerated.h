@@ -1,5 +1,4 @@
 void TaskFailureDetector_setup();
-void handleFailureLogic();
 void TaskFailureDetector_loop(char **metric);
 #define INTERFACE 0
 #define EXPORT_INTERFACE 0

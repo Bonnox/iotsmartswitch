@@ -36,7 +36,7 @@ the function should contain everything
 
 */
 
-/*
+/**
 updates a timer, should be called every cycle
 */
 void updateTimer(DelayData* waitTask)
@@ -76,6 +76,7 @@ if the timer has passed
 bool finished(DelayData* query)
 {
 	int remain = query->remainingMillis;
+
 	if (remain <= 0)
 	{
 		return true;

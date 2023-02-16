@@ -1,4 +1,5 @@
 #include "TaskPrometheus.h"
+#include "prometheusCfg.h"
 
 #include "../TaskCurrentMonitor/TaskCurrentMonitor.h"
 #include "../TaskFailureDetector/TaskFailureDetector.h"
@@ -9,7 +10,11 @@ void TaskPrometheus_Setup()
 {
 	generatePushURL(PROM_NAME_JOB, PROM_NAME_INSTANCE, PROM_NAME_NAMESPACE);
 }
-bool isMetric(String str)
+/*
+an optimistic check about whether a string is a metric.
+not syntactically perfect.
+*/
+bool isStringAlmostMetric(String str)
 {
 	bool starts = str.startsWith("#");
 	starts = starts || (str.charAt(0) > 'a' && str.charAt(0) < 'z');
@@ -20,12 +25,14 @@ bool isMetric(String str)
 //void TaskPrometheus_callBack(int size, String metrics, ...)
 void TaskPrometheus_callBack(int size, String metricsToPush)
 {	
+	// we add the lifetime of the process for test purposes
 	String alive = generateMetricStringGauge(PROM_METRIC_NAME_ALIVE, PROM_METRIC_DESC_ALIVE, (millis() / 1000));
 	metricsToPush += alive;
 	
+	Serial.println("metrics to be pushed:");
 	Serial.println(metricsToPush);
 	
-	pushMetrics(metricsToPush);
+	pushMetrics(metricsToPush,(char*) TASK_PROMETHEUS_SERVER);
 }
 
 

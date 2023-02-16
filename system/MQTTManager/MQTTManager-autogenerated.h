@@ -3,6 +3,7 @@ bool MQTTsubscribe(String topic);
 int search(String request,MQTTMessage messages[],int length);
 String MQTTread(String requestedTopic,MQTTManagerData *clientInstance);
 void onConnectionEstablished();
+void copyAsyncBufferToCycleBuffer(MQTTManagerData *structure);
 void TaskMqtt_loop();
 void onMessageReceived(String topic,String message);
 #define INTERFACE 0
